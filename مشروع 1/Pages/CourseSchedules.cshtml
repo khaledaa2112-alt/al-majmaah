@@ -1,0 +1,170 @@
+﻿@page
+@model مشروع_1.Pages.CourseSchedulesModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قوائم الشعب الدراسية - جامعة المجمعة</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url('/images/IM.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            direction: rtl;
+        }
+
+        .main-overlay {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .header-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 5px solid #28a745;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+            .header-card h2 {
+                color: #28a745;
+                margin: 0;
+                font-size: 1.5rem;
+            }
+
+        .schedules-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* تنسيق عرض الشعبة كبطاقة معلومات */
+        .schedule-item {
+            background-color: #ffffff;
+            padding: 18px 25px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-right: 6px solid #28a745;
+        }
+
+        .course-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .college-tag {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        .section-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid #c8e6c9;
+        }
+
+        .back-btn {
+            margin-top: 35px;
+            padding: 12px 35px;
+            background-color: #666;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+            .back-btn:hover {
+                background-color: #444;
+                transform: translateY(-2px);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="main-overlay">
+
+        <div class="header-card">
+            <h2>قوائم الشعب الدراسية للمحاضر</h2>
+            <p style="color: #666; margin-top: 5px;">الفصل الدراسي الثاني - كلية علوم الحاسب</p>
+        </div>
+
+        <div class="schedules-container">
+            <div class="schedule-item">
+                <div class="course-info">
+                    <span class="course-name">برمجة مرئية</span>
+                    <span class="college-tag">قسم علوم الحاسب</span>
+                </div>
+                <span class="section-badge">شعبة: 189</span>
+            </div>
+
+            <div class="schedule-item">
+                <div class="course-info">
+                    <span class="course-name">هياكل بيانات</span>
+                    <span class="college-tag">قسم علوم الحاسب</span>
+                </div>
+                <span class="section-badge">شعبة: 575</span>
+            </div>
+
+            <div class="schedule-item">
+                <div class="course-info">
+                    <span class="course-name">هندسة برمجيات</span>
+                    <span class="college-tag">قسم هندسة البرمجيات</span>
+                </div>
+                <span class="section-badge">شعبة: 499</span>
+            </div>
+
+            <div class="schedule-item">
+                <div class="course-info">
+                    <span class="course-name">إدارة قواعد البيانات</span>
+                    <span class="college-tag">قسم نظم المعلومات</span>
+                </div>
+                <span class="section-badge">شعبة: 380</span>
+            </div>
+
+            <div class="schedule-item">
+                <div class="course-info">
+                    <span class="course-name">برمجة 1</span>
+                    <span class="college-tag">قسم علوم الحاسب</span>
+                </div>
+                <span class="section-badge">شعبة: 277</span>
+            </div>
+        </div>
+
+        <a href="/FacultyDashboard" class="back-btn">العودة للوحة التحكم</a>
+    </div>
+
+</body>
+</html>

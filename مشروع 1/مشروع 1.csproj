@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>الخدمات الألكترونية للجامعة المجمعة</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="C:\Users\khale\OneDrive\سطح المكتب\StudentPortal.cshtml" Link="StudentPortal.cshtml" />
+  </ItemGroup>
+
+</Project>

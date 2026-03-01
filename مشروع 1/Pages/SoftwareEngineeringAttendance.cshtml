@@ -1,0 +1,177 @@
+﻿@page
+@model مشروع_1.Pages.SoftwareEngineeringAttendanceModel
+@{
+    Layout = null;
+    // قائمة طلاب مادة هندسة برمجيات
+    string[] studentNames = {
+        "خالد وليد الرشيد", "فهد محمد السبيعي", "عبدالله ناصر الدوسري", "سلطان بدر المطيري",
+        "إبراهيم صالح العنزي", "ماجد علي الحربي", "تركي حسن القحطاني", "فيصل حمد الشمري",
+        "سعد عبدالعزيز العتيبي", "مشعل فهد الزهراني", "ريان مساعد الشهري", "عمر سليمان الفوزان",
+        "بندر نايف السهلي", "منصور زيد الرويلي", "ياسر محمد البقمي", "ثامر فهد الخالدي",
+        "صالح جار الله التويجري", "نواف خالد الرويلي", "وليد بدر العيسى", "سعود فهد أبا الخيل"
+    };
+
+    // توليد أرقام جامعية تبدأ بـ 42
+    Random rand = new Random();
+    HashSet<int> ids = new HashSet<int>();
+    while (ids.Count < 20) { ids.Add(rand.Next(421000000, 421009999)); }
+    int[] studentIds = ids.ToArray();
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رصد غياب - هندسة برمجيات</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url('/images/IM.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', sans-serif;
+            direction: rtl;
+        }
+
+        .main-overlay {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .attendance-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+            .header h2 {
+                color: #28a745;
+                margin: 0;
+            }
+
+            .header p {
+                color: #666;
+                margin: 5px 0;
+                font-weight: bold;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #28a745;
+            padding: 12px;
+            border-bottom: 2px solid #eee;
+            text-align: right;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        .absent-check {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #28a745;
+        }
+
+        .footer-btns {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .save-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+            .save-btn:hover {
+                background-color: #218838;
+            }
+
+        .back-btn {
+            background-color: #666;
+            color: white;
+        }
+
+            .back-btn:hover {
+                background-color: #444;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="main-overlay">
+        <div class="attendance-card">
+            <div class="header">
+                <h2>رصد غياب الطلاب</h2>
+                <p>مادة: هندسة برمجيات | شعبة: 499</p>
+                <p style="font-size: 0.8rem;">تاريخ اليوم: @DateTime.Now.ToString("dd/MM/yyyy")</p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>م</th>
+                        <th>اسم الطالب</th>
+                        <th>الرقم الجامعي</th>
+                        <th style="text-align: center;">غائب</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < 20; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@studentNames[i]</td>
+                            <td>@studentIds[i]</td>
+                            <td style="text-align: center;">
+                                <input type="checkbox" class="absent-check">
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="footer-btns">
+                <button class="btn save-btn" onclick="alert('تم حفظ تحضير هندسة البرمجيات بنجاح')">حفظ التحضير</button>
+                <a href="/AttendanceTracking" class="btn back-btn">رجوع للشعب</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

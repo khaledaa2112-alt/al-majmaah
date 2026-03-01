@@ -1,0 +1,165 @@
+﻿@page
+@model مشروع_1.Pages.AbsenceModel
+@{
+    Layout = null;
+    // جلب الرقم الجامعي من الجلسة (Session)
+    var studentId = HttpContext.Session.GetString("UserStudentId");
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الغياب والتأخر - جامعة المجمعة</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url('/images/IM.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            direction: rtl;
+        }
+
+        .main-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .absence-card {
+            background-color: #ffffff; /* أبيض بالكامل بدون شفافية */
+            padding: 40px;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .status-warning {
+            background-color: #fff3f3;
+            color: #d32f2f;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            border: 2px solid #ffcdd2;
+        }
+
+        .status-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            border: 2px solid #c8e6c9;
+        }
+
+        .info-table {
+            width: 100%;
+            margin-top: 15px;
+            border-collapse: collapse;
+        }
+
+            .info-table td {
+                padding: 12px;
+                border-bottom: 1px solid #eee;
+                text-align: right;
+                font-size: 0.95rem;
+            }
+
+        .back-btn {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 45px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: bold;
+            margin-top: 25px;
+            font-size: 1rem;
+        }
+
+            .back-btn:hover {
+                background-color: #218838;
+                text-decoration: none; /* إزالة الخط تحت الرابط */
+            }
+    </style>
+</head>
+<body>
+
+    <div class="main-overlay">
+        <div class="absence-card">
+            <h2 style="color: #28a745; margin-bottom: 25px;">سجل الحضور والغياب</h2>
+
+            @if (studentId == "441001234")
+            {
+                <div style="font-size: 60px; color: #28a745; margin-bottom: 15px;">✓</div>
+                <div class="status-success">
+                    لا يوجد غيابات أو تأخر مسجل
+                </div>
+                <p style="color: #666;">سجلك الأكاديمي نظيف تماماً، استمر على هذا الانضباط!</p>
+            }
+            else if (studentId == "461102138")
+            {
+                <div class="status-warning">
+                    ⚠️ تنبيه: تم رصد غياب
+                </div>
+
+                <table class="info-table">
+                    <tr>
+                        <td><strong>المادة:</strong></td>
+                        <td>هياكل البيانات (CS 231)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>عدد مرات الغياب:</strong></td>
+                        <td>مرتان (2 غياب)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>نسبة الغياب:</strong></td>
+                        <td><span style="color:red">5%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>الحالة:</strong></td>
+                        <td>مستمر</td>
+                    </tr>
+                </table>
+                
+            }
+            <table class="info-table">
+                <tr>
+                    <td><strong>المادة:</strong></td>
+                    <td>برمجة مرئية  (IT 223)</td>
+                </tr>
+                <tr>
+                    <td><strong>عدد مرات الغياب:</strong></td>
+                    <td>مره (1 غياب)</td>
+                </tr>
+                <tr>
+                    <td><strong>نسبة الغياب:</strong></td>
+                    <td><span style="color:red">2.5%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>الحالة:</strong></td>
+                    <td>مستمر</td>
+                </tr>
+            </table>
+            <p style="color: #666; font-size: 0.9rem; margin-top: 15px;">يرجى الالتزام بالحضور لتجنب الحرمان.</p>
+            
+
+            <a href="/StudentDashboard" class="back-btn">العودة للوحة التحكم</a>
+        </div>
+    </div>
+
+</body>
+</html>

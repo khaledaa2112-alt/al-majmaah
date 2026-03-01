@@ -1,0 +1,246 @@
+﻿@page
+@model مشروع_1.Pages.StudentPlanModel
+@{
+    Layout = null;
+    var studentId = HttpContext.Session.GetString("UserStudentId");
+    var majorName = (studentId == "441001234") ? "فيزياء طاقة متجددة" : "تقنية المعلومات";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الخطة الدراسية - @majorName</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url('/images/IM.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            direction: rtl;
+        }
+
+        .main-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+            min-height: 100vh;
+            padding: 40px 10px;
+        }
+
+        .header-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 5px solid #28a745;
+        }
+
+        .level-row {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px dashed #444;
+            margin-bottom: 30px;
+        }
+
+        .level-title {
+            color: #d2b48c;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-right: 4px solid #d2b48c;
+            padding-right: 15px;
+        }
+
+        /* كلاس خاص للمستويات المنتهية */
+        .level-completed .level-title {
+            color: #999;
+            border-right-color: #666;
+        }
+
+            .level-completed .level-title::after {
+                content: " (تم الإنجاز)";
+                font-size: 0.9rem;
+                opacity: 0.7;
+            }
+
+        .courses-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .course-card {
+            background: white;
+            width: 190px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* تنسيق المواد المنتهية باللون الرمادي */
+        .completed-card .top-bar {
+            background-color: #bdc3c7 !important; /* رمادي فاتح */
+            color: #2c3e50 !important;
+        }
+
+        .completed-card .bottom-bar {
+            background-color: #ecf0f1 !important;
+            color: #7f8c8d !important;
+        }
+
+        .course-card .top-bar {
+            padding: 10px 5px;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .course-card .bottom-bar {
+            padding: 8px;
+            background: #f8f9fa;
+            color: #333;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* ألوان المواد الحالية (المستوى الرابع) */
+        .bg-phys {
+            background-color: #7b1113;
+        }
+
+        .bg-math {
+            background-color: #a52a2a;
+        }
+
+        .bg-gen {
+            background-color: #d2691e;
+        }
+
+        .bg-it {
+            background-color: #28a745;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            text-decoration: none;
+            background: #28a745;
+            padding: 10px 30px;
+            border-radius: 8px;
+            width: fit-content;
+            margin-inline: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-overlay">
+        <div class="header-box">
+            <h1 style="color: #28a745; margin: 0;">الخطة الدراسية</h1>
+            <h2 style="color: #333; font-size: 1.2rem;">تخصص: @majorName</h2>
+        </div>
+
+        <div class="container">
+            @if (studentId == "441001234")
+            {
+                <div class="level-row level-completed">
+                    <div class="level-title">المستوى الأول</div>
+                    <div class="courses-row">
+                        <div class="course-card completed-card"><div class="top-bar">الكهربية والمغناطيسية 1</div><div class="bottom-bar">PHYS 121</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الفيزياء العامة 1</div><div class="bottom-bar">PHYS 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">حساب التفاضل والتكامل</div><div class="bottom-bar">MATH 113</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">مهارات اللغة الإنجليزية</div><div class="bottom-bar">ENGL 110</div></div>
+                    </div>
+                </div>
+
+                <div class="level-row level-completed">
+                    <div class="level-title">المستوى الثاني</div>
+                    <div class="courses-row">
+                        <div class="course-card completed-card"><div class="top-bar">العلوم الرقمية</div><div class="bottom-bar">DIGI 102</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">أحياء عامة</div><div class="bottom-bar">BIOL 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الكيمياء العضوية</div><div class="bottom-bar">CHEM 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">لغة إنجليزية</div><div class="bottom-bar">ENGL 120</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">ميكانيكا كلاسيكية</div><div class="bottom-bar">PHYS 131</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الفيزياء الرياضية</div><div class="bottom-bar">PHYS 141</div></div>
+                    </div>
+                </div>
+
+                <div class="level-row level-completed">
+                    <div class="level-title">المستوى الثالث</div>
+                    <div class="courses-row">
+                        <div class="course-card completed-card"><div class="top-bar">فيزياء عامة 2</div><div class="bottom-bar">PHYS 202</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">القياس وتحليل البيانات</div><div class="bottom-bar">PHYS 211</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الكهربية والمغناطيسية 2</div><div class="bottom-bar">PHYS 222</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الموجات والاهتزازات</div><div class="bottom-bar">PHYS 251</div></div>
+                    </div>
+                </div>
+
+                <div class="level-row">
+                    <div class="level-title">المستوى الرابع (قيد الدراسة)</div>
+                    <div class="courses-row">
+                        <div class="course-card"><div class="top-bar bg-phys">الديناميكا الحرارية</div><div class="bottom-bar">PHYS 261</div></div>
+                        <div class="course-card"><div class="top-bar bg-phys">الفيزياء الحديثة</div><div class="bottom-bar">PHYS 241</div></div>
+                        <div class="course-card"><div class="top-bar bg-phys">فيزياء بيئة</div><div class="bottom-bar">PHYS 204</div></div>
+                    </div>
+                </div>
+            }
+            else if (studentId == "461102138")
+            {
+                <div class="level-row level-completed">
+                    <div class="level-title">المستوى الأول</div>
+                    <div class="courses-row">
+                        <div class="course-card completed-card"><div class="top-bar">لغة إنجليزية</div><div class="bottom-bar">ENGL 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">أساسيات الحاسب</div><div class="bottom-bar">CS 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">حساب التفاضل والتكامل</div><div class="bottom-bar">MATH 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">فيزياء</div><div class="bottom-bar">PHYS 101</div></div>
+                    </div>
+                </div>
+
+                <div class="level-row level-completed">
+                    <div class="level-title">المستوى الثاني</div>
+                    <div class="courses-row">
+                        <div class="course-card completed-card"><div class="top-bar">لغة إنجليزية 2</div><div class="bottom-bar">ENGL 102</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">برمجة الحاسب</div><div class="bottom-bar">CS 111</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الاحتمالات والإحصاء</div><div class="bottom-bar">STAT 101</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">حساب التفاضل والتكامل 2</div><div class="bottom-bar">MATH 102</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الرياضيات المتقطعة</div><div class="bottom-bar">MATH 151</div></div>
+                    </div>
+                </div>
+
+                <div class="level-row level-completed">
+                    <div class="level-title">المستوى الثالث</div>
+                    <div class="courses-row">
+                        <div class="course-card completed-card"><div class="top-bar">لغة إنجليزية تقنية</div><div class="bottom-bar">ENGL 214</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">برمجة الحاسب 2</div><div class="bottom-bar">CS 113</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">أساسيات قواعد البيانات</div><div class="bottom-bar">IS 231</div></div>
+                        <div class="course-card completed-card"><div class="top-bar">الجبر الخطي</div><div class="bottom-bar">MATH 241</div></div>
+                    </div>
+                </div>
+
+                <div class="level-row">
+                    <div class="level-title">المستوى الرابع (المستوى الحالي)</div>
+                    <div class="courses-row">
+                        <div class="course-card"><div class="top-bar bg-it">البرمجة المرئية</div><div class="bottom-bar">IT 223</div></div>
+                        <div class="course-card"><div class="top-bar bg-it">هياكل البيانات</div><div class="bottom-bar">CS 231</div></div>
+                        <div class="course-card"><div class="top-bar bg-it">نظم إدارة قواعد البيانات </div><div class="bottom-bar">IS 233</div></div>
+                    </div>
+                </div>
+            }
+
+            <a href="/StudentDashboard" class="back-link">العودة للوحة التحكم</a>
+        </div>
+    </div>
+
+</body>
+</html>
